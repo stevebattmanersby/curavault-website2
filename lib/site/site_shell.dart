@@ -46,10 +46,10 @@ class _SiteShellState extends State<SiteShell> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    scheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.26 : 0.60),
+                    scheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.34 : 0.60),
                     scheme.surface.withValues(alpha: 0.00),
                     scheme.surface.withValues(alpha: 0.00),
-                    scheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.12 : 0.34),
+                    scheme.tertiary.withValues(alpha: isDark ? 0.08 : 0.16),
                   ],
                 ),
               ),
@@ -95,7 +95,7 @@ class _SiteShellState extends State<SiteShell> {
           ? null
           : FloatingActionButton.small(
               onPressed: _scrollToTop,
-              backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+              backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.85 : 1.0),
               foregroundColor: Theme.of(context).colorScheme.onSurface,
               child: const Icon(Icons.arrow_upward),
             ),

@@ -49,6 +49,10 @@ class CuraVaultColors {
   static const teal = Color(0xFF0F6E68);
   static const tealDeep = Color(0xFF0B5A55);
   static const tealMint = Color(0xFF7FE4DB);
+  static const aiCyan = Color(0xFF54E6D6);
+  static const aiCyanDeep = Color(0xFF1BBEAE);
+  static const aiViolet = Color(0xFF8B7CFF);
+  static const aiVioletDeep = Color(0xFF5B4BFF);
   static const slate = Color(0xFF162427);
   static const slateSoft = Color(0xFF2B3C40);
 
@@ -59,10 +63,14 @@ class CuraVaultColors {
   static const outline = Color(0xFF8EA0A5);
 
   // Dark mode neutrals
-  static const darkSurface = Color(0xFF0F1E21);
-  static const darkBackground = Color(0xFF0B171A);
-  static const darkSurfaceTint = Color(0xFF13282C);
-  static const darkOutline = Color(0xFF2D4B50);
+  // Tuned for a premium “AI” look: deep slate/navy base with crisp neon accents.
+  static const darkBackground = Color(0xFF060B10);
+  static const darkSurface = Color(0xFF0B121A);
+  static const darkSurfaceTint = Color(0xFF0F1A24);
+  static const darkSurfaceElevated = Color(0xFF101F2C);
+  static const darkOutline = Color(0xFF223546);
+  static const darkOutlineStrong = Color(0xFF2E4A61);
+  static const darkTextSoft = Color(0xFFB9C8D4);
 }
 
 // =============================================================================
@@ -208,22 +216,22 @@ ThemeData get lightTheme => ThemeData(
 ThemeData get darkTheme => ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.dark(
-    primary: CuraVaultColors.tealMint,
-    onPrimary: const Color(0xFF042927),
-    primaryContainer: const Color(0xFF073C38),
+    primary: CuraVaultColors.aiCyan,
+    onPrimary: const Color(0xFF031A18),
+    primaryContainer: const Color(0xFF0D2D2B),
     onPrimaryContainer: const Color(0xFFCFF8F4),
-    secondary: const Color(0xFFB7CED3),
-    onSecondary: const Color(0xFF081A1D),
-    tertiary: const Color(0xFF74CFC6),
-    onTertiary: const Color(0xFF042927),
+    secondary: CuraVaultColors.darkTextSoft,
+    onSecondary: const Color(0xFF071016),
+    tertiary: CuraVaultColors.aiViolet,
+    onTertiary: Colors.white,
     error: const Color(0xFFFFB4AB),
     onError: const Color(0xFF690005),
     errorContainer: const Color(0xFF93000A),
     onErrorContainer: const Color(0xFFFFDAD6),
     surface: CuraVaultColors.darkSurface,
     onSurface: const Color(0xFFE6F1F2),
-    surfaceContainerHighest: CuraVaultColors.darkSurfaceTint,
-    onSurfaceVariant: const Color(0xFFB9CDD0),
+    surfaceContainerHighest: CuraVaultColors.darkSurfaceElevated,
+    onSurfaceVariant: CuraVaultColors.darkTextSoft,
     outline: CuraVaultColors.darkOutline,
     shadow: Colors.black,
     inversePrimary: CuraVaultColors.teal,
@@ -241,31 +249,31 @@ ThemeData get darkTheme => ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppRadius.xl),
       side: BorderSide(
-        color: CuraVaultColors.darkOutline.withValues(alpha: 0.35),
+        color: CuraVaultColors.darkOutline.withValues(alpha: 0.55),
         width: 1,
       ),
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: const Color(0xFF10262A),
+    fillColor: CuraVaultColors.darkSurfaceElevated,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppRadius.lg),
-      borderSide: BorderSide(color: CuraVaultColors.darkOutline.withValues(alpha: 0.35)),
+      borderSide: BorderSide(color: CuraVaultColors.darkOutline.withValues(alpha: 0.55)),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppRadius.lg),
-      borderSide: BorderSide(color: CuraVaultColors.darkOutline.withValues(alpha: 0.35)),
+      borderSide: BorderSide(color: CuraVaultColors.darkOutline.withValues(alpha: 0.55)),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppRadius.lg),
-      borderSide: const BorderSide(color: CuraVaultColors.tealMint, width: 1.4),
+      borderSide: const BorderSide(color: CuraVaultColors.aiCyan, width: 1.4),
     ),
   ),
   filledButtonTheme: FilledButtonThemeData(
     style: FilledButton.styleFrom(
-      backgroundColor: CuraVaultColors.tealMint,
-      foregroundColor: const Color(0xFF042927),
+      backgroundColor: CuraVaultColors.aiCyan,
+      foregroundColor: const Color(0xFF031A18),
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
     ),
@@ -273,7 +281,7 @@ ThemeData get darkTheme => ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       foregroundColor: const Color(0xFFE7EEF7),
-      side: BorderSide(color: CuraVaultColors.darkOutline.withValues(alpha: 0.45)),
+      side: BorderSide(color: CuraVaultColors.darkOutlineStrong.withValues(alpha: 0.55)),
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
     ),

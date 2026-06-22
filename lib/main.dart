@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
       // Theme configuration
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.system,
+      // Marketing site defaults to the dark “AI” scheme.
+      themeMode: ThemeMode.dark,
 
       // Router configuration
       routerConfig: AppRouter.router,

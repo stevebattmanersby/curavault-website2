@@ -92,14 +92,15 @@ class FrostedPanel extends StatelessWidget {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
-    final fill = (tint ?? scheme.surface).withValues(alpha: isDark ? 0.72 : 0.92);
+    // Dark mode: a slightly more transparent, glassy fill for the “AI” look.
+    final fill = (tint ?? scheme.surfaceContainerHighest).withValues(alpha: isDark ? 0.62 : 0.92);
 
     Widget body = Container(
       padding: padding,
       decoration: BoxDecoration(
         color: fill,
         borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: scheme.outline.withValues(alpha: isDark ? 0.50 : 0.18)),
+        border: Border.all(color: scheme.outline.withValues(alpha: isDark ? 0.62 : 0.18)),
       ),
       child: child,
     );
@@ -109,7 +110,7 @@ class FrostedPanel extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
         child: body,
       ),
     );

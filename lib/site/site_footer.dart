@@ -10,11 +10,12 @@ class SiteFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
       decoration: BoxDecoration(
-        color: scheme.surfaceContainerHighest.withValues(alpha: 0.22),
-        border: Border(top: BorderSide(color: scheme.outline.withValues(alpha: 0.18))),
+        color: scheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.36 : 0.22),
+        border: Border(top: BorderSide(color: scheme.outline.withValues(alpha: isDark ? 0.45 : 0.18))),
       ),
       child: Center(
         child: ConstrainedBox(
@@ -60,8 +61,8 @@ class SiteFooter extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppRadius.lg),
-                  border: Border.all(color: scheme.outline.withValues(alpha: 0.20)),
-                  color: scheme.surface.withValues(alpha: 0.65),
+                  border: Border.all(color: scheme.outline.withValues(alpha: isDark ? 0.55 : 0.20)),
+                  color: scheme.surface.withValues(alpha: isDark ? 0.40 : 0.65),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:curavault_website/nav.dart';
 import 'package:curavault_website/site/site_link.dart';
@@ -32,8 +33,8 @@ class SiteHeader extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: scheme.surface.withValues(alpha: isDark ? 0.70 : 0.92),
-        border: Border(bottom: BorderSide(color: scheme.outline.withValues(alpha: isDark ? 0.55 : 0.16))),
+        color: (isDark ? scheme.surfaceContainerHighest : scheme.surface).withValues(alpha: isDark ? 0.72 : 0.92),
+        border: Border(bottom: BorderSide(color: scheme.outline.withValues(alpha: isDark ? 0.70 : 0.16))),
       ),
       child: SafeArea(
         bottom: false,
@@ -126,14 +127,15 @@ class _MobileMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return IconButton(
       onPressed: () => showModalBottomSheet<void>(
         context: context,
         showDragHandle: true,
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: scheme.surfaceContainerHighest,
         builder: (context) => _MobileMenuSheet(activePath: activePath, onNavTap: onNavTap),
       ),
-      icon: const Icon(Icons.menu),
+      icon: Icon(Icons.menu, color: scheme.onSurface),
       tooltip: 'Menu',
     );
   }
@@ -146,6 +148,7 @@ class _MobileMenuSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final items = <_NavItem>[
       const _NavItem('Home', AppRoutes.home),
       ...SiteHeader._primaryNav,
@@ -161,17 +164,23 @@ class _MobileMenuSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Navigate', style: Theme.of(context).textTheme.titleMedium),
+            Text('Navigate', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800)),
             const SizedBox(height: 12),
             for (final item in items)
               _MobileMenuRow(
                 label: item.label,
                 isActive: activePath == item.route,
                 onTap: () {
-                  Navigator.of(context).pop();
+                  context.pop();
                   onNavTap(item.route);
                 },
               ),
+            const SizedBox(height: 6),
+            Text(
+              'Privacy-first • Security-minded',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: scheme.onSurface.withValues(alpha: 0.65)),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),
