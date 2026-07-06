@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:curavault_website/nav.dart';
 import 'package:curavault_website/site/marketing_page.dart';
 import 'package:curavault_website/site/widgets.dart';
-import 'package:curavault_website/theme.dart';
 
 class SecurityPrivacyPage extends StatelessWidget {
   const SecurityPrivacyPage({super.key});

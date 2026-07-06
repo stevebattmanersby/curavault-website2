@@ -95,13 +95,23 @@ class _BrandMark extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 34,
-            height: 34,
+            width: 38,
+            height: 38,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: LinearGradient(colors: [scheme.primary, scheme.tertiary]),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: scheme.primary.withValues(alpha: 0.28)),
+              boxShadow: [
+                BoxShadow(
+                  color: scheme.primary.withValues(alpha: 0.22),
+                  blurRadius: 18,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+              image: const DecorationImage(
+                image: AssetImage('assets/icons/dreamflow_icon.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
-            child: const Icon(Icons.lock_outline, color: Colors.white, size: 20),
           ),
           const SizedBox(width: 10),
           Column(

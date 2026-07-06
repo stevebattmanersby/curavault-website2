@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:curavault_website/nav.dart';
 import 'package:curavault_website/site/marketing_page.dart';
 import 'package:curavault_website/site/widgets.dart';
-import 'package:curavault_website/theme.dart';
 
 class FeaturesPage extends StatelessWidget {
   const FeaturesPage({super.key});
@@ -16,6 +15,24 @@ class FeaturesPage extends StatelessWidget {
       title: 'Features',
       lead: 'A calm, structured way to keep important health documents ready when you need them.',
       children: [
+        const FeatureShowcasePanel(),
+        const SizedBox(height: 18),
+        const FeatureWorkflowStrip(),
+        const SizedBox(height: 18),
+        const VisualFeatureLibrary(),
+        const SizedBox(height: 18),
+        const HealthStatsPanel(),
+        const SizedBox(height: 18),
+        const TrustBadgeWall(),
+        const SizedBox(height: 24),
+        Text(
+          'Built around everyday health admin',
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(fontWeight: FontWeight.w900, letterSpacing: 0),
+        ),
+        const SizedBox(height: 10),
         LayoutBuilder(
           builder: (context, c) {
             final cols = c.maxWidth >= 980 ? 2 : 1;

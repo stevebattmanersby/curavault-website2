@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:curavault_website/site/marketing_page.dart';
-import 'package:curavault_website/theme.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
   const PrivacyPolicyPage({super.key});

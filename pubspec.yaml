@@ -25,6 +25,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icons/dreamflow_icon.jpg
+    - assets/marketing/curavault-app-showcase.png
 
 flutter_launcher_icons:
   android: true

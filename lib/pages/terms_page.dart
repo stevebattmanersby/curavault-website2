@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:curavault_website/site/marketing_page.dart';
-import 'package:curavault_website/theme.dart';
 
 class TermsPage extends StatelessWidget {
   const TermsPage({super.key});

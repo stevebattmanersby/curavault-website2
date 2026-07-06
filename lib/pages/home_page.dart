@@ -19,32 +19,44 @@ class HomePage extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
       child: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1120),
+          constraints: const BoxConstraints(maxWidth: 1280),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
+              const SizedBox(height: 18),
               Container(
-                padding: const EdgeInsets.all(18),
+                padding: EdgeInsets.symmetric(
+                  horizontal: twoCol ? 38 : 20,
+                  vertical: twoCol ? 36 : 22,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppRadius.xl),
-                  border: Border.all(color: scheme.outline.withValues(alpha: 0.18)),
+                  border:
+                      Border.all(color: scheme.primary.withValues(alpha: 0.24)),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      scheme.primary.withValues(alpha: 0.14),
-                      scheme.surface,
-                      scheme.tertiary.withValues(alpha: 0.08),
+                      const Color(0xFF02090C),
+                      const Color(0xFF06181B),
+                      scheme.primary.withValues(alpha: 0.26),
                     ],
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: scheme.primary.withValues(alpha: 0.20),
+                      blurRadius: 54,
+                      offset: const Offset(0, 30),
+                    ),
+                  ],
                 ),
                 child: twoCol
                     ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Expanded(child: _HeroCopy()),
-                          const SizedBox(width: 18),
-                          const Expanded(child: ProductMockupCard()),
+                          const Expanded(flex: 9, child: _HeroCopy()),
+                          const SizedBox(width: 28),
+                          const Expanded(flex: 14, child: ProductMockupCard()),
                         ],
                       )
                     : const Column(
@@ -56,8 +68,14 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 20),
               _TrustStrip(),
+              const SizedBox(height: 20),
+              const _MetricsRail(),
+              const SizedBox(height: 20),
+              const HealthStatsPanel(),
+              const SizedBox(height: 14),
+              const TrustBadgeWall(),
               const SizedBox(height: 26),
               _SectionTitle(
                 eyebrow: 'Core value',
@@ -68,39 +86,46 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 14),
               LayoutBuilder(
                 builder: (context, c) {
-                  final cols = c.maxWidth >= 980 ? 3 : (c.maxWidth >= 640 ? 2 : 1);
+                  final cols =
+                      c.maxWidth >= 980 ? 3 : (c.maxWidth >= 640 ? 2 : 1);
                   return _Grid(
                     columns: cols,
                     children: const [
                       FeatureTile(
                         icon: Icons.folder_open,
                         title: 'Document vault',
-                        body: 'Upload and categorize referrals, results, prescriptions, discharge notes, and more.',
+                        body:
+                            'Upload and categorize referrals, results, prescriptions, discharge notes, and more.',
                       ),
                       FeatureTile(
                         icon: Icons.search,
                         title: 'Fast retrieval',
-                        body: 'Find what you need quickly with consistent structure and clear metadata.',
+                        body:
+                            'Find what you need quickly with consistent structure and clear metadata.',
                       ),
                       FeatureTile(
                         icon: Icons.people_alt_outlined,
                         title: 'Family & carer friendly',
-                        body: 'Organize records by person and prepare for appointments with less stress.',
+                        body:
+                            'Organize records by person and prepare for appointments with less stress.',
                       ),
                       FeatureTile(
                         icon: Icons.lock_outline,
                         title: 'Privacy-first',
-                        body: 'Built to minimize data exposure. Security and legal wording subject to review.',
+                        body:
+                            'Built to minimize data exposure. Security and legal wording subject to review.',
                       ),
                       FeatureTile(
                         icon: Icons.share_outlined,
                         title: 'Share with control',
-                        body: 'Prepare a focused set of documents to share when needed — not everything.',
+                        body:
+                            'Prepare a focused set of documents to share when needed — not everything.',
                       ),
                       FeatureTile(
                         icon: Icons.schedule,
                         title: 'Reminders (planned)',
-                        body: 'Optional reminders for renewals and appointments — designed to be non-intrusive.',
+                        body:
+                            'Optional reminders for renewals and appointments — designed to be non-intrusive.',
                       ),
                     ],
                   );
@@ -111,7 +136,11 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Use cases', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
+                    Text('Use cases',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.w800)),
                     const SizedBox(height: 10),
                     LayoutBuilder(
                       builder: (context, c) {
@@ -122,17 +151,20 @@ class HomePage extends StatelessWidget {
                             _UseCaseCard(
                               icon: Icons.person_outline,
                               title: 'Individuals',
-                              body: 'Keep your own records tidy — results, referrals, insurance, and care plans.',
+                              body:
+                                  'Keep your own records tidy — results, referrals, insurance, and care plans.',
                             ),
                             _UseCaseCard(
                               icon: Icons.family_restroom,
                               title: 'Families',
-                              body: 'Organize multiple people under one roof — helpful during emergencies and travel.',
+                              body:
+                                  'Organize multiple people under one roof — helpful during emergencies and travel.',
                             ),
                             _UseCaseCard(
                               icon: Icons.volunteer_activism_outlined,
                               title: 'Carers',
-                              body: 'Prepare for appointments with quick access to history and key documents.',
+                              body:
+                                  'Prepare for appointments with quick access to history and key documents.',
                             ),
                           ],
                         );
@@ -149,11 +181,21 @@ class HomePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Ready to explore?', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
+                          Text('Ready to explore?',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(fontWeight: FontWeight.w800)),
                           const SizedBox(height: 8),
                           Text(
                             'See how CuraVault works and what’s included in each plan. Everything on this site is static for now — forms are placeholders.',
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: scheme.onSurface.withValues(alpha: 0.72), height: 1.5),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    color: scheme.onSurface
+                                        .withValues(alpha: 0.72),
+                                    height: 1.5),
                           ),
                           const SizedBox(height: 14),
                           Wrap(
@@ -165,7 +207,8 @@ class HomePage extends StatelessWidget {
                                 child: const Text('View pricing'),
                               ),
                               OutlinedButton(
-                                onPressed: () => context.go(AppRoutes.howItWorks),
+                                onPressed: () =>
+                                    context.go(AppRoutes.howItWorks),
                                 child: const Text('How it works'),
                               ),
                             ],
@@ -180,9 +223,11 @@ class HomePage extends StatelessWidget {
                         height: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(AppRadius.xl),
-                          gradient: LinearGradient(colors: [scheme.primary, scheme.tertiary]),
+                          gradient: LinearGradient(
+                              colors: [scheme.primary, scheme.tertiary]),
                         ),
-                        child: const Icon(Icons.shield_moon_outlined, color: Colors.white, size: 44),
+                        child: const Icon(Icons.shield_moon_outlined,
+                            color: Colors.white, size: 44),
                       ),
                     ],
                   ],
@@ -191,7 +236,8 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 22),
               MarketingPage(
                 title: 'Frequently asked questions',
-                lead: 'Quick answers to common questions about scope, privacy, and usage.',
+                lead:
+                    'Quick answers to common questions about scope, privacy, and usage.',
                 children: const [
                   _HomeFaqPreview(),
                 ],
@@ -227,29 +273,47 @@ class _HeroCopy extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(999),
-            border: Border.all(color: scheme.outline.withValues(alpha: 0.18)),
-            color: scheme.surface.withValues(alpha: 0.70),
+            border: Border.all(color: scheme.primary.withValues(alpha: 0.32)),
+            color: const Color(0xFF061A1D).withValues(alpha: 0.86),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(Icons.lock, size: 16, color: scheme.primary),
               const SizedBox(width: 8),
-              Text('Privacy-first • designed with security in mind', style: Theme.of(context).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w800)),
+              Text('Encrypted health records | AI assistance',
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelSmall
+                      ?.copyWith(fontWeight: FontWeight.w800)),
             ],
           ),
         ),
-        const SizedBox(height: 14),
-        Text(
-          'Your health records.\nOrganized. Accessible. Controlled.',
-          style: Theme.of(context).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w800, height: 1.05, letterSpacing: -0.8),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'CuraVault helps you collect and manage medical documents for yourself and your loved ones — with a calm interface and a privacy-first mindset.',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: scheme.onSurface.withValues(alpha: 0.74), height: 1.55),
+        const SizedBox(height: 18),
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                  color: scheme.onSurface,
+                  fontWeight: FontWeight.w900,
+                  height: 1.08,
+                  letterSpacing: 0,
+                ),
+            children: [
+              const TextSpan(text: 'Your health.\nAll in one '),
+              TextSpan(text: 'secure', style: TextStyle(color: scheme.primary)),
+              const TextSpan(text: ' place.'),
+            ],
+          ),
         ),
         const SizedBox(height: 16),
+        Text(
+          'Store, organise, and understand your health information with a calm interface and AI assistance you can trust.',
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: scheme.onSurface.withValues(alpha: 0.74), height: 1.55),
+        ),
+        const SizedBox(height: 20),
+        const _HeroFeatureList(),
+        const SizedBox(height: 20),
         Wrap(
           spacing: 10,
           runSpacing: 10,
@@ -267,8 +331,82 @@ class _HeroCopy extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          'Avoid unverified compliance claims: wording subject to review.',
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(color: scheme.onSurface.withValues(alpha: 0.62)),
+          'Security and compliance wording should be reviewed before launch.',
+          style: Theme.of(context)
+              .textTheme
+              .labelSmall
+              ?.copyWith(color: scheme.onSurface.withValues(alpha: 0.62)),
+        ),
+      ],
+    );
+  }
+}
+
+class _HeroFeatureList extends StatelessWidget {
+  const _HeroFeatureList();
+
+  @override
+  Widget build(BuildContext context) {
+    final items = const [
+      _HeroFeature(Icons.lock_outline, 'Private by design',
+          'Encrypted. You own your data.'),
+      _HeroFeature(Icons.auto_awesome, 'AI-powered organisation',
+          'Smarter insights. Faster answers.'),
+      _HeroFeature(Icons.people_alt_outlined, 'For you and your family',
+          'Manage multiple profiles securely.'),
+      _HeroFeature(Icons.verified_user_outlined, 'Security-minded',
+          'Careful defaults for sensitive records.'),
+    ];
+    return Column(
+      children: [
+        for (final item in items) ...[
+          item,
+          const SizedBox(height: 14),
+        ],
+      ],
+    );
+  }
+}
+
+class _HeroFeature extends StatelessWidget {
+  const _HeroFeature(this.icon, this.title, this.body);
+  final IconData icon;
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 42,
+          height: 42,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: scheme.primary.withValues(alpha: 0.52)),
+            color: scheme.primary.withValues(alpha: 0.10),
+          ),
+          child: Icon(icon, color: scheme.primary, size: 20),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w900)),
+              const SizedBox(height: 4),
+              Text(body,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: scheme.onSurface.withValues(alpha: 0.68),
+                      height: 1.4)),
+            ],
+          ),
         ),
       ],
     );
@@ -302,9 +440,84 @@ class _TrustStrip extends StatelessWidget {
               children: [
                 Icon(item.icon, size: 18, color: scheme.primary),
                 const SizedBox(width: 8),
-                Text(item.label, style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700)),
+                Text(item.label,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelMedium
+                        ?.copyWith(fontWeight: FontWeight.w700)),
               ],
             ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MetricsRail extends StatelessWidget {
+  const _MetricsRail();
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, c) {
+        final compact = c.maxWidth < 720;
+        final children = const [
+          _MetricItem(value: '24/7', label: 'record access'),
+          _MetricItem(value: '3 min', label: 'appointment prep'),
+          _MetricItem(value: '1 vault', label: 'for family records'),
+        ];
+        if (compact) {
+          return Column(
+            children: [
+              for (final child in children) ...[
+                child,
+                const SizedBox(height: 10),
+              ],
+            ],
+          );
+        }
+        return Row(
+          children: [
+            for (final child in children) Expanded(child: child),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _MetricItem extends StatelessWidget {
+  const _MetricItem({required this.value, required this.label});
+  final String value;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      decoration: BoxDecoration(
+        color: scheme.surface.withValues(alpha: 0.62),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: Border.all(color: scheme.outline.withValues(alpha: 0.18)),
+      ),
+      child: Row(
+        children: [
+          Text(value,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.w900)),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              label,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: scheme.onSurface.withValues(alpha: 0.70),
+                  height: 1.35),
+            ),
+          ),
         ],
       ),
     );
@@ -318,7 +531,8 @@ class _TrustItem {
 }
 
 class _SectionTitle extends StatelessWidget {
-  const _SectionTitle({required this.eyebrow, required this.title, required this.subtitle});
+  const _SectionTitle(
+      {required this.eyebrow, required this.title, required this.subtitle});
   final String eyebrow;
   final String title;
   final String subtitle;
@@ -329,16 +543,27 @@ class _SectionTitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(eyebrow.toUpperCase(), style: Theme.of(context).textTheme.labelSmall?.copyWith(letterSpacing: 1.2, fontWeight: FontWeight.w900, color: scheme.primary)),
+        Text(eyebrow.toUpperCase(),
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                letterSpacing: 1.2,
+                fontWeight: FontWeight.w900,
+                color: scheme.primary)),
         const SizedBox(height: 8),
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 760),
-          child: Text(title, style: Theme.of(context).textTheme.headlineMedium?.copyWith(letterSpacing: -0.4)),
+          child: Text(title,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium
+                  ?.copyWith(letterSpacing: -0.4)),
         ),
         const SizedBox(height: 10),
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 760),
-          child: Text(subtitle, style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: scheme.onSurface.withValues(alpha: 0.74), height: 1.55)),
+          child: Text(subtitle,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: scheme.onSurface.withValues(alpha: 0.74),
+                  height: 1.55)),
         ),
       ],
     );
@@ -380,7 +605,8 @@ class _Grid extends StatelessWidget {
 }
 
 class _UseCaseCard extends StatelessWidget {
-  const _UseCaseCard({required this.icon, required this.title, required this.body});
+  const _UseCaseCard(
+      {required this.icon, required this.title, required this.body});
   final IconData icon;
   final String title;
   final String body;
@@ -400,9 +626,16 @@ class _UseCaseCard extends StatelessWidget {
         children: [
           Icon(icon, color: scheme.primary),
           const SizedBox(height: 10),
-          Text(title, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800)),
+          Text(title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(fontWeight: FontWeight.w800)),
           const SizedBox(height: 6),
-          Text(body, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: scheme.onSurface.withValues(alpha: 0.72), height: 1.5)),
+          Text(body,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: scheme.onSurface.withValues(alpha: 0.72),
+                  height: 1.5)),
         ],
       ),
     );
