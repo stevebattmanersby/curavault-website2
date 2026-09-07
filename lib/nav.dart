@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:curavault_website/pages/account_deletion_page.dart';
+import 'package:curavault_website/pages/billing_return_page.dart';
 import 'package:curavault_website/pages/contact_page.dart';
 import 'package:curavault_website/pages/data_request_page.dart';
 import 'package:curavault_website/pages/faq_page.dart';
@@ -82,6 +83,20 @@ class AppRouter {
             name: 'dataRequest',
             pageBuilder: (context, state) => const NoTransitionPage(child: DataRequestPage()),
           ),
+          GoRoute(
+            path: AppRoutes.billingSuccess,
+            name: 'billingSuccess',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: BillingReturnPage(state: BillingReturnState.success),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.billingCancel,
+            name: 'billingCancel',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: BillingReturnPage(state: BillingReturnState.cancel),
+            ),
+          ),
         ],
       ),
     ],
@@ -130,4 +145,6 @@ class AppRoutes {
   static const String deleteAccount = '/delete-account';
   static const String terms = '/terms';
   static const String dataRequest = '/data-request';
+  static const String billingSuccess = '/billing/success';
+  static const String billingCancel = '/billing/cancel';
 }
