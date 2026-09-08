@@ -14,8 +14,11 @@ class SiteFooter extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
       decoration: BoxDecoration(
-        color: scheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.36 : 0.22),
-        border: Border(top: BorderSide(color: scheme.outline.withValues(alpha: isDark ? 0.45 : 0.18))),
+        color: scheme.surfaceContainerHighest
+            .withValues(alpha: isDark ? 0.36 : 0.22),
+        border: Border(
+            top: BorderSide(
+                color: scheme.outline.withValues(alpha: isDark ? 0.45 : 0.18))),
       ),
       child: Center(
         child: ConstrainedBox(
@@ -51,7 +54,8 @@ class SiteFooter extends StatelessWidget {
                     links: [
                       _FooterLink('Privacy Policy', AppRoutes.privacy),
                       _FooterLink('Terms of Service', AppRoutes.terms),
-                      _FooterLink('Data requests / privacy rights', AppRoutes.dataRequest),
+                      _FooterLink('Data requests / privacy rights',
+                          AppRoutes.dataRequest),
                     ],
                   ),
                 ],
@@ -61,33 +65,41 @@ class SiteFooter extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppRadius.lg),
-                  border: Border.all(color: scheme.outline.withValues(alpha: isDark ? 0.55 : 0.20)),
+                  border: Border.all(
+                      color: scheme.outline
+                          .withValues(alpha: isDark ? 0.55 : 0.20)),
                   color: scheme.surface.withValues(alpha: isDark ? 0.40 : 0.65),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Important note', style: Theme.of(context).textTheme.titleSmall),
+                    Text('Important note',
+                        style: Theme.of(context).textTheme.titleSmall),
                     const SizedBox(height: 6),
                     Text(
                       'CuraVault is designed as a personal document and record organizer. Content on this website is for general information only and is subject to legal and technical review. Do not rely on it as medical advice.',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: scheme.onSurface.withValues(alpha: 0.72), height: 1.5),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: scheme.onSurface.withValues(alpha: 0.72),
+                          height: 1.5),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 18),
-              Row(
+              Wrap(
+                spacing: 16,
+                runSpacing: 8,
+                alignment: WrapAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Text(
-                      '© ${DateTime.now().year} CuraVault. All rights reserved.',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: scheme.onSurface.withValues(alpha: 0.65)),
-                    ),
+                  Text(
+                    '© ${DateTime.now().year} CuraVault. All rights reserved.',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: scheme.onSurface.withValues(alpha: 0.65)),
                   ),
                   Text(
                     'Privacy-first • Security-minded',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(color: scheme.onSurface.withValues(alpha: 0.65)),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: scheme.onSurface.withValues(alpha: 0.65)),
                   ),
                 ],
               ),
@@ -112,7 +124,9 @@ class _FooterColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: scheme.onSurface, fontWeight: FontWeight.w700)),
+          Text(title,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: scheme.onSurface, fontWeight: FontWeight.w700)),
           const SizedBox(height: 10),
           for (final link in links)
             Padding(
@@ -147,7 +161,9 @@ class _FooterLinkRowState extends State<_FooterLinkRow> {
         child: AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 120),
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: _hover ? scheme.primary : scheme.onSurface.withValues(alpha: 0.70),
+                color: _hover
+                    ? scheme.primary
+                    : scheme.onSurface.withValues(alpha: 0.70),
                 fontWeight: FontWeight.w600,
               ),
           child: Text(widget.link.label),

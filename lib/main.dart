@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     //     ChangeNotifierProvider(create: (_) => ExampleProvider()),
     //   ],
     //   child: MaterialApp.router(
-    //     title: 'Dreamflow Starter',
+    //     title: 'CuraVault',
     //     debugShowCheckedModeBanner: false,
     //     routerConfig: AppRouter.router,
     //   ),
