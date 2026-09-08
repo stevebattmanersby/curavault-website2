@@ -9,6 +9,7 @@ import 'package:curavault_website/pages/faq_page.dart';
 import 'package:curavault_website/pages/features_page.dart';
 import 'package:curavault_website/pages/home_page.dart';
 import 'package:curavault_website/pages/how_it_works_page.dart';
+import 'package:curavault_website/pages/login_page.dart';
 import 'package:curavault_website/pages/pricing_page.dart';
 import 'package:curavault_website/pages/privacy_policy_page.dart';
 import 'package:curavault_website/pages/password_reset_landing_page.dart';
@@ -119,6 +120,12 @@ class AppRouter {
                   child: PasswordResetLandingPage(recoveryUri: state.uri),
                 ),
               ),
+              GoRoute(
+                path: AppRoutes.login,
+                name: 'login',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: LoginPage()),
+              ),
             ],
           ),
         ],
@@ -171,4 +178,5 @@ class AppRoutes {
   static const String billingSuccess = '/billing/success';
   static const String billingCancel = '/billing/cancel';
   static const String resetPassword = '/reset-password';
+  static const String login = '/login';
 }

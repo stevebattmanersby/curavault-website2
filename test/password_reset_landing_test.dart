@@ -188,13 +188,26 @@ void main() {
     expect(source, isNot(contains('analytics')));
   });
 
-  test('Netlify recovery route disables storage and referrers', () {
-    final headers = File('web/_headers').readAsStringSync();
+  test('Netlify config preserves recovery headers and SPA routing', () {
+    final netlifyConfig = File('netlify.toml').readAsStringSync();
+    final buildScript = File('tool/netlify_build.sh').readAsStringSync();
 
-    expect(headers, contains('/reset-password'));
-    expect(headers, contains('Cache-Control: no-store'));
-    expect(headers, contains('Referrer-Policy: no-referrer'));
-    expect(File('web/_redirects').readAsStringSync(), contains('/index.html'));
+    expect(netlifyConfig, contains('command = "bash tool/netlify_build.sh"'));
+    expect(netlifyConfig, contains('publish = "build/web"'));
+    expect(netlifyConfig, contains('for = "/reset-password"'));
+    expect(netlifyConfig, contains('Cache-Control = "no-store"'));
+    expect(netlifyConfig, contains('Referrer-Policy = "no-referrer"'));
+    expect(netlifyConfig, contains('from = "/*"'));
+    expect(netlifyConfig, contains('to = "/index.html"'));
+    expect(netlifyConfig, contains('status = 200'));
+    expect(buildScript, contains('FLUTTER_VERSION="3.44.2"'));
+    expect(
+      buildScript,
+      contains('FLUTTER_COMMIT="c9a6c484230f8b5e408ec57be1ef71dee1e77020"'),
+    );
+    expect(buildScript, contains(r'${CACHE_ROOT}/flutter/${FLUTTER_VERSION}'));
+    expect(buildScript, contains('flutter pub get'));
+    expect(buildScript, contains('flutter build web --release'));
     expect(
       File('lib/main.dart').readAsStringSync(),
       contains('usePathUrlStrategy();'),

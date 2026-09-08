@@ -1,0 +1,15 @@
+[build]
+  command = "bash tool/netlify_build.sh"
+  publish = "build/web"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/reset-password"
+
+  [headers.values]
+    Cache-Control = "no-store"
+    Referrer-Policy = "no-referrer"
