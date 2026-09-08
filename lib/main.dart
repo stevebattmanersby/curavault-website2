@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+
 import 'theme.dart';
 import 'nav.dart';
 
@@ -8,6 +10,7 @@ import 'nav.dart';
 /// - go_router navigation
 /// - Material 3 theming with light/dark modes
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
